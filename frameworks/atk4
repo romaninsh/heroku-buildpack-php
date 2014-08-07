@@ -4,17 +4,10 @@ BUILD_DIR="$2"
 basedir="$( cd -P "$( dirname "$0" )" && pwd )"
 source $basedir/../bin/common.sh
 
-function requires_cakephp2_pear() {
-    [ $(jq --raw-output '.require["pear-pear.cakephp.org/CakePHP"]' < "$BUILD_DIR/composer.json") != "null" ]
-}
+#function requires_cakephp2_pear() {
+#    [ $(jq --raw-output '.require["pear-pear.cakephp.org/CakePHP"]' < "$BUILD_DIR/composer.json") != "null" ]
+#}
 
-function requires_cakephp2_composer() {
-    [ $(jq --raw-output '.require["cakephp/cakephp"]' < "$BUILD_DIR/composer.json") != "null" ]
-}
-
-function sets_framework_cakephp2() {
-    [ $(jq --raw-output '.extra.heroku.framework' < "$BUILD_DIR/composer.json") == "cakephp2" ]
-}
 
 case "$1" in
     detect)
