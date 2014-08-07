@@ -440,6 +440,8 @@ mkdir -p "bin"
 cat > "bin/run" <<SH
 #!/usr/bin/env bash
 
+set -x
+
 pmsgr=/tmp/pmsgr
 rm -f \$pmsgr
 mkfifo \$pmsgr
