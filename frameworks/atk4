@@ -27,7 +27,7 @@ case "$1" in
         ;;
     compile)
         echo "-----> Setting up Agile Toolkit app"
-        cp "$basedir/../conf/nginx/atk.conf.erb" "$BUILD_DIR/conf/site.conf.erb"
+        cp "$basedir/../conf/nginx/atk4.conf.erb" "$BUILD_DIR/conf/site.conf.erb"
         ( cd "$BUILD_DIR"; ./update.sh )
         ;;
 esac
