@@ -23,7 +23,7 @@ case "$1" in
         fi
         ;;
     get-log-files)
-        echo "/app/logs/am3_error_log" "/app/logs/am3_info_log" "/app/logs/am3_debug_log"
+        echo "$BUILD_DIR/logs/am3_error_log" "$BUILD_DIR/logs/am3_info_log" "$BUILD_DIR/logs/am3_debug_log"
         ;;
     compile)
         echo "-----> Setting up Agile Toolkit app"
