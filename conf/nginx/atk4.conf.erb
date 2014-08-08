@@ -4,9 +4,8 @@ root /app/<%= ENV['DOCUMENT_ROOT'] %>;
 root /app/;
 <% end %>
 
-#all locations try other files first and go to our front controller if none of them exists
-location / {
-    try_files $uri $uri/ /<%= ENV['INDEX_DOCUMENT'] %>?$uri&$args;
+if (!-e $request_filename) {
+  rewrite ^(.+)$ /index.php?q=$1 last;
 }
 
 location ~ \.php$ {
