@@ -131,12 +131,9 @@ function install_composer_deps() {
     {
         cd "$target"
         php "vendor/composer/bin/composer.phar" install \
-            --optimize-autoloader \
             --no-interaction
         cd "$cwd"
     } | indent
-
-    ls -l /app/vendor/atk4/atk4
 }
 
 function install_node_deps() {
