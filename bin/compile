@@ -12,7 +12,7 @@ if [ -n "$BUILDPACK_DEBUG" ]; then
     set -x
 fi
 
-BUILD_DIR="$1/html"
+BUILD_DIR="$1"
 CACHE_DIR="$2"
 
 cd "$BUILD_DIR"
@@ -89,6 +89,8 @@ function install_composer_deps() {
     local checksum=$(curl --silent "http://${S3_BUCKET}.s3.amazonaws.com/composer/composer.phar.md5")
 
     status "Vendoring Composer"
+
+    ( cd /app/vendor; ls -l )
     if [ ! -f "$CACHE_DIR/composer.phar.md5" ] || [ "$(cat $CACHE_DIR/composer.phar.md5)" != "$checksum" ]; then
         echo "Updating Composer" | indent
         curl --silent "http://${S3_BUCKET}.s3.amazonaws.com/composer/composer.phar" > "$CACHE_DIR/composer.phar" | indent
@@ -126,6 +128,9 @@ function install_composer_deps() {
     fi
 
     status "Installing application dependencies with Composer"
+
+    ( cd /app/vendor; ls -l )
+
     {
         cd "$target"
         php "vendor/composer/bin/composer.phar" install \
@@ -135,6 +140,9 @@ function install_composer_deps() {
             --no-dev
         cd "$cwd"
     } | indent
+    status "Composer is done"
+
+    ( cd /app/vendor; ls -l )
 }
 
 function install_node_deps() {
