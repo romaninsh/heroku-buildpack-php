@@ -131,10 +131,8 @@ function install_composer_deps() {
     {
         cd "$target"
         php "vendor/composer/bin/composer.phar" install \
-            -vv
-            --prefer-dist \
             --optimize-autoloader \
-            --no-interaction 
+            --no-interaction
         cd "$cwd"
     } | indent
 
